@@ -1,25 +1,19 @@
-# Running the app
 import sys
 from PyQt6.QtWidgets import QApplication, QMessageBox
-from app import ExpenseApp
-from databse import init_db
+from database import init_db
+from app import CashFlowApp
 
 def main():
     app = QApplication(sys.argv)
 
-    if not init_db("expense.db"):
-        QMessageBox.critical(None, "Database Error", "Failed to initialize database...")
-        return
+    if not init_db("cashflow.db"):
+        QMessageBox.critical(None, "Error", "Could not open your database")
+        sys.exit(1)
 
-    window = ExpenseApp()
+    window = CashFlowApp()
     window.show()
 
     sys.exit(app.exec())
-
-
-
-
-
 
 if __name__ == "__main__":
     main()
